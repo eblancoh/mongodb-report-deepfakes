@@ -5,7 +5,7 @@ from database import db_read
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import numpy as np
 
 
 def df_builder(query, collector):
@@ -61,7 +61,7 @@ def probs_render(probs):
     sns.set(color_codes=True)
 
     f, (a1, a2) = plt.subplots(1, 2, 
-                               gridspec_kw={'width_ratios': [5, 1], 'wspace': 0.01},
+                               gridspec_kw={'width_ratios': [5, 2], 'wspace': 0.03},
                                sharey=True)
 
     # Lineplot 
@@ -80,24 +80,20 @@ def probs_render(probs):
     f.tight_layout()
     # save the figure
     directory = "templates"
-    f.savefig(os.path.join(directory, "genuineness.jpg"), quality=95)
+    f.savefig(os.path.join(directory, "linearplot.jpg"), quality=95)
 
 
 
 def histogram_render(probs):
 
     # Definimos el número de bins 
-    n_bins = 1000
+    n_bins = 50
     # Cogemos las probabilidades
     x = probs["probability"]
 
     fig, ax = plt.subplots(figsize=(8, 5))
 
-    # color the intervals
-    ax.axvspan(xmin=0, xmax=0.4, ymin=0, ymax=1.1, facecolor='b', alpha=0.4)
-    ax.axvspan(xmin=0.4, xmax=0.6, ymin=0, ymax=1.1, facecolor='orange', alpha=0.4)
-    ax.axvspan(xmin=0.6, xmax=1.0, ymin=0, ymax=1.1, facecolor='r', alpha=0.4)
-
+   
     # Add labels to the plot
     style = dict(size=10, color='k')
 
@@ -107,8 +103,14 @@ def histogram_render(probs):
 
     # plot the cumulative histogram
     n, bins, patches = ax.hist(x, n_bins, density=True, histtype='step',
-                           cumulative=True, color='k')
+                           cumulative=True)
     patches[0].set_xy(patches[0].get_xy()[:-1])
+
+    # color the intervals
+    ax.axvspan(xmin=0, xmax=0.4, ymin=0, ymax=1.1, facecolor='b', alpha=0.3)
+    ax.axvspan(xmin=0.4, xmax=0.6, ymin=0, ymax=1.1, facecolor='orange', alpha=0.3)
+    ax.axvspan(xmin=0.6, xmax=1.0, ymin=0, ymax=1.1, facecolor='r', alpha=0.3)
+
 
     # tidy up the figure
     ax.grid(True)    
@@ -118,5 +120,36 @@ def histogram_render(probs):
     # save the figure
     directory = "templates"
     plt.savefig(os.path.join(directory, "histogram.jpg"), quality=95)
+
+def pie_render(probs):
+
+    # Pie chart
+    labels = ['safe', 'uncertain', 'risky']
+    no_safe = np.where(probs["probability"] < 0.4)[0].__len__()
+    no_uncertain = np.where((probs["probability"] >= 0.4) &  (probs["probability" ]< 0.6))[0].__len__()
+    no_risky = np.where(probs["probability"] >= 0.6)[0].__len__()
+
+    frames = no_safe + no_uncertain + no_risky
+    
+    sizes = [no_safe*100/frames, no_uncertain*100/frames, no_risky*100/frames]
+    
+    # only "explode" the 3rd slice (i.e. 'risky')
+    explode = (0, 0, 0.1)
+
+    colors = ["#22bb33", "#f0ad4e", "#bb2124"]
+
+    fig, ax = plt.subplots()
+    ax.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+    
+    # Equal aspect ratio ensures that pie is drawn as a circle
+    ax.axis('equal')
+    plt.tight_layout()
+    # save the figure
+    directory = "templates"
+    plt.savefig(os.path.join(directory, "pie.jpg"), quality=95)
+
+    return sizes
+
 
 

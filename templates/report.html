@@ -14,7 +14,13 @@
       <h1>Análisis de legitimidad - {{ title }}</h1>
       <h1>{{ engine }}</h1>
       <address>
-        Equipo de Ideas Locas CDCO. Telefónica Digital España S.A.
+        Equipo de Ideas Locas CDCO. 
+        Telefónica Digital España S.A.
+        Distrito Telefónica - Edificio Oeste 1, Planta 8.
+        Ronda de la Comunicación, s/n.
+        28050 Madrid, España.
+        Teléfono de contacto: +34 XXX XX XX XX
+        Mail de contacto: johndoe@example.com
       </address>
     </article>
 
@@ -33,7 +39,6 @@
       <ul>
         <li><a href="#intro-title"></a></li>
         <li><a href="#analysis-title"></a></li>
-        <li><a href="#conclusion-title"></a></li>
       </ul>
     </article>
 
@@ -46,7 +51,7 @@
       <section>
         <p>
           Distorsionar información haciendo uso de tecnologías basadas en Machine Learning para la creación de Deep Fakes nunca
-          ha sido más sencilla. Esta capacidad hace posible crear audio y video de personas reales que dicen y hacen 
+          ha sido más sencillo. Esta capacidad hace posible crear audio y video de personas reales que dicen y hacen 
           cosas que esos mismos sujetos nunca dijeron o hicieron. Las técnicas de Machine Learning son cada vez más
           sofisticadas, haciendo estas falsificaciones cada vez más realistas y cada vez más resistentes a la detección. 
           Estas tecnologías dedicadas al engaño se difuenden rápidamente entre la sociedad, poniéndola en manos de actores
@@ -54,7 +59,8 @@
         </p>
         <p>
           Actualmente, tanto las personas como las empresas se enfrentan a nuevas formas de explotación, intimidación, 
-          sabotaje y descrédito personal. Los riesgos para nuestra democracia y para la seguridad nacional también son profundos. 
+          sabotaje y descrédito personal. Este tipo de tecnologías también suponen un riesgo para nuestra democracia y
+           para nuestra seguridad nacional. 
         </p>
         <p>
           Telefónica Digital España S.A. está concienciada con los principios éticos del uso de la Inteligencia Artificial
@@ -62,11 +68,6 @@
           Por ello, el Departamento de Ideas Locas CDCO tiene como objetivo proporcionar un servicio modular de detección de 
           contenido no legítimo haciendo uso del estado del arte en referencia a las herramientas de detección de alteración de 
           recursos multimedia.
-        </p>
-            
-        <p>
-          El presente reporte fue generado en <strong>Distrito Telefónica - Edificio Oeste 1, Planta 8 
-            - Ronda de la Comunicación, s/n - 28050 Madrid, ESPAÑA</strong> en la siguiente fecha y hora <strong>{{ date }} CET</strong>.
         </p>
 
         
@@ -88,7 +89,7 @@
             <li><strong>FaceForensics++: Learning to Detect Manipulated Facial Images</strong></li>
             <p><em>Andreas Rössler and Davide Cozzolino and Luisa Verdoliva and Christian Riess and Justus Thies and Matthias Niessner. 
               International Conference on Computer Vision (ICCV). 2019.</em></p>
-            FaceForensics ++ es un conjunto de datos forenses que consta de 1000 secuencias de video originales manipuladas con
+            FaceForensics ++ es un conjunto de datos forenses que consta de 1,000 secuencias de video originales manipuladas con
             cuatro métodos automatizados de manipulación facial: DeepFakes, Face2Face, FaceSwap y NeuralTextures. 
             <p>Los datos provienen de 977 videos de YouTube y todos los videos contienen una cara frontal rastreable en su 
               mayoría sin oclusiones, lo que permite que los métodos automáticos de manipulación generen falsificaciones realistas.</p>
@@ -112,19 +113,19 @@
           de devolver falsos positivos o falsos negativos a la hora de determinar su legitimidad. 
         </p>
         <p>
-          Se ha calculado una <strong>tasa de confianza</strong> en base al 
-          número de frames etiquetados como sospechosos con respecto a la totalidad si han arrojado <strong>una probabilidad superior al 60%</strong>. Por otro lado, 
-          dado el alto número de frames analizados en cada vídeo, se ha decidido definir el siguiente criterio estadístico conservador para catalogar
-          la naturaleza del recurso multimedia:
+          Se ha calculado una <strong>tasa de confianza</strong> en base al número de frames etiquetados como sospechosos con respecto a la totalidad
+           si han arrojado <strong>una probabilidad superior al 60%</strong>. Por otro lado, dado el alto número de frames analizados en cada vídeo, 
+           se ha decidido definir el siguiente criterio estadístico conservador para catalogar la naturaleza del recurso multimedia:
           <ul>
             <li><strong>Recurso Seguro [safe]</strong></li>
-            Si el porcentaje de frames analizados en el vídeo por encima de la tasa de confianza es <strong>inferior al 30%</strong>, podremos adelantar que es poco probable 
-            que el vídeo haya sido alterado.
+            Si el porcentaje de frames analizados en el vídeo por encima de la tasa de confianza es <strong>inferior al 30%</strong>, 
+            podremos adelantar que es poco probable que el vídeo haya sido alterado.
             <li><strong>Recurso Incierto [uncertain]</strong></li>
-            En el caso de que porcentaje de frames analizados en el vídeo por encima de esa tasa de confianza esté <strong>en el intervalo [30%, 40%)</strong>,
-            catalogaremos al recurso como incierto.
+            En el caso de que porcentaje de frames analizados en el vídeo por encima de esa tasa de confianza esté <strong>en el 
+              intervalo [30%, 40%)</strong>, catalogaremos al recurso como incierto.
             <li><strong>Recurso No Seguro [risky]</strong></li>
-            Para un porcentaje de frames sobre la tasa de confianza <strong>igual o superior al 40%</strong>, se clasifica el recurso como no seguro o fake. 
+            Para un porcentaje de frames sobre la tasa de confianza <strong>igual o superior al 40%</strong>, se clasifica el recurso
+             como no seguro o fake. 
           </ul>
         </p>
       </section>
@@ -170,7 +171,7 @@
           {{ proba_table }}
         </p>
         <p>
-          En total se han analizado <strong>{{ num_frames }} frames</strong>. La mediana en la tasa de no legitimidad reportada es de
+          En total se han analizado <strong>{{ num_frames }} frames</strong>. La <strong>mediana</strong> en la tasa de no legitimidad reportada es de
         <strong>{{ median }}</strong>.
         </p>
         <p>
@@ -178,10 +179,8 @@
         El <strong>intervalo intercuartílico 25%-75%</strong> cubre las scores <strong>{{ iqr }}</strong>.
         </p>
 
-        
-
           <div>
-            <img src="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/genuineness.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
+            <img src="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/linearplot.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
             <figcaption>Fig. 1 - Evolución de la probabilidad de falsedad de los frames analizados (izquierda) y <em>violin plot</em> con mediana y valores extremos (derecha)</figcaption>
           </div>
           <div>
@@ -190,12 +189,10 @@
           </div>
   
         <p>
-          En la Fig. 1 se incluye la evolución de la probabilidad de falsedad predicha a lo largo de todo el recurso. Junto con
-          el perfil lineal de la evolución, tambień se ofrece la distribución de la score más probable en el análisis. En la Fig. 2 se facilita el histograma
-          acumulado de las probabilidades de falsedad que ayuda a visualizar la concentración de los scores obtenidos por <em>{{ engine }}</em>.
+          En la <em>Figura 1</em> se incluye la evolución de la probabilidad de falsedad predicha a lo largo de todo el recurso.
         </p>
         <p>
-         En la Fig. 2 se facilita el histograma acumulado de las probabilidades de falsedad que ayuda a visualizar la concentración de los
+         En la Figura 2 se facilita el histograma acumulado de las probabilidades de falsedad que ayuda a visualizar la concentración de los
           scores obtenidos por <em>{{ engine }}</em>.
         </p>
 
@@ -219,57 +216,46 @@
       <h2 id="chapter-title">Informe Ejecutivo</h2>
     </article>
 
-    <article id="intro">
-      <h2 id="intro-title">Introducción</h2>
-      <section>
-
-        <p>
-          Este informe ejecutivo fue generado en <strong>Distrito Telefónica - Edificio Oeste 1, Planta 8 
-            - Ronda de la Comunicación, s/n - 28050 Madrid, ESPAÑA</strong> en la siguiente fecha y hora <strong>{{ date }} CET</strong>.
-        </p>
-    
+        
       <article id="analysis">
         <h2 id="analysis-title">Auditoría del recurso</h2>
         <section>
           <p>
             El recurso analizado se almacenó en la base de datos del servicio con los siguientes detalles y fue etiquetado 
-            como contenido <strong>{{ is_fake }}</strong> por el algoritmo {{ engine }}
+            como contenido <strong>{{ is_fake }}</strong> por el algoritmo {{ engine }}.
           </p>
           <p>
             {{ main_table }}
           </p>
           
           <p>
-            En total se analizaron analizado <strong>{{ num_frames }} frames</strong>. La mediana en la tasa de no legitimidad reportada es de
-          <strong>{{ median }}</strong>.
+            En total se analizaron analizado <strong>{{ num_frames }} frames</strong>. La <strong>mediana</strong> en la tasa
+             de no legitimidad reportada es de <strong>{{ median }}</strong>.
           </p>
-          <p>
-            La <strong>media</strong> y <strong>desviación típica</strong> de esa probabilidad está en el intervalo <strong>{{ mean }} <span>&#177;</span> {{ std }}</strong>. 
-          El <strong>intervalo intercuartílico 25%-75%</strong> cubre las scores <strong>{{ iqr }}</strong>.
-          </p>
-  
+          
             <div>
-              <img src="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/genuineness.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
-              <figcaption>Fig. 1 - Evolución de la probabilidad de falsedad de los frames analizados (izquierda) y <em>violin plot</em> con mediana y valores extremos (derecha)</figcaption>
+              <img src="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/linearplot.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
+              <figcaption>Fig. 1 - Evolución de la probabilidad de falsedad de los frames analizados (izquierda) y <em>violin plot</em> 
+                con mediana y valores extremos (derecha)</figcaption>
             </div>
             <div>
-              <img src="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/histogram.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
-              <figcaption>Fig. 2 - Histograma acumulado de probabilidades de no legitimidad para los frames analizados del recurso.</figcaption>
+              <img src="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/pie.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
+              <figcaption>Fig. 2 - Diagrama de sectores con los porcentajes de frames analizados seguros ({{ pie_safe }}%), 
+                inciertos ({{ pie_warning }}%) y fake ({{ pie_risky }}%).</figcaption>
             </div>
-  
-        </p>
+            <p>
+              De acuerdo con las evidencias presentadas en el este informe ejecutivo - desglosadas en mayor detalle en el informe técnico 
+              - consideramos que el recurso <strong>{{ title }}</strong>, analizado mediante el motor <em>{{ engine }}</em> <strong>presenta 
+                una probabilidad {{ conclusion }}</strong> de ser un recurso no legítimo.
+            </p>
+            <p>
+              <em>
+                Este informe ejecutivo fue generado en <strong>Distrito Telefónica - Edificio Oeste 1, Planta 8 
+                  - Ronda de la Comunicación, s/n - 28050 Madrid, ESPAÑA</strong> con fecha y hora <strong>{{ date }} CET</strong>.
+              </em>
+            </p>
         </section>
       </article>
 
-      <article id="conclusion">
-        <h2 id="conclusion-title">Conclusión</h2>
-        <section>
-          <p>
-            De acuerdo con las evidencias presentadas en el este informe ejecutivo - desglosadas en mayor detalle en el informe técnico - consideramos que el recurso 
-            <strong>{{ title }}</strong>, analizado mediante el motor <em>{{ engine }}</em> <strong>presenta una probabilidad 
-            {{ conclusion }}</strong> de ser un recurso no legítimo.
-          </p>
-        </section>
-      </article>
   </body>
 </html>

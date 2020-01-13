@@ -2,7 +2,7 @@
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
 from datetime import datetime
-from dataframe import df_builder, probs_render, histogram_render
+from dataframe import df_builder, probs_render, histogram_render, pie_render
 
 env = Environment(loader=FileSystemLoader('templates'))
 template = env.get_template("report.html")
@@ -19,6 +19,11 @@ def render(query, collector):
         conclusion = "moderada"
     else:
         conclusion = "baja"
+    
+    # Creamos y almacenamos el pie chart de legitimidad
+    sizes = pie_render(probs)
+
+    # Definimos un diccionario con las variables a pasar al html de cara a la renderización
 
     template_vars = {"title" : query["filename"],
                     "main_table": df.to_html(),
@@ -37,12 +42,16 @@ def render(query, collector):
                            str(round(df_proba["probability"].T["75%"], 3)),
                     "num_frames": df_proba["probability"].T["count"].astype(int),
                     "date": ahora,
+                    "pie_safe": round(sizes[0], 1),
+                    "pie_warning": round(sizes[1], 1),
+                    "pie_risky": round(sizes[2], 1), 
                     "conclusion": conclusion
                     }
     
-    #Creamos y almacenamos los plots de la evolución de legitimidad
+    # Creamos y almacenamos los plots de la evolución de legitimidad
     probs_render(probs)
     histogram_render(probs)
+    
     # Renderizamos el pdf
     html_out = template.render(template_vars)
 
@@ -50,7 +59,7 @@ def render(query, collector):
     
 
 if __name__=="__main__":
-    query = {"filename": "Bill Hader channels Tom Cruise [DeepFake].mp4"}
+    query = {"filename": "Taxi Driver starring Al Pacino [DeepFake].mp4"}
     collector = "faceforensics"
 
     render(query, collector)

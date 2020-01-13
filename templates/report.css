@@ -71,7 +71,7 @@
   margin: 0; }
 
 @page chapter {
-  background: #0F6475;
+  background: #DFDFDF;
   margin: 0;
   @top-left {
     content: none; }
@@ -87,9 +87,9 @@ html {
   font-weight: 300;
   line-height: 1.5; }
   html body h1 {
-    color: #F4F4F4;
-    font-size: 38pt;
-    margin: 5cm 2cm 0 2cm;
+    color: #DFDFDF;
+    font-size: 35pt;
+    margin: 1.5cm 2cm 0 2cm;
     page: no-chapter;
     width: 100%; }
   html body h2, html body h3, html body h4 {
@@ -112,7 +112,7 @@ html {
     html body article#cover address {
       background: #1B8697;
       flex: 1 50%;
-      margin: 0 -2cm;
+      margin: 0 -1cm;
       padding: 1cm 0;
       white-space: pre-wrap; }
       html body article#cover address:first-of-type {
