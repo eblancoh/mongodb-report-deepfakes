@@ -3,9 +3,12 @@ from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
 from datetime import datetime
 from dataframe import df_builder, probs_render, histogram_render, pie_render
+from watcher import get_logger
 
 env = Environment(loader=FileSystemLoader('templates'))
 template = env.get_template("report.html")
+
+logger = get_logger("html2pdf")
 
 def render(query, collector):
 
@@ -55,7 +58,8 @@ def render(query, collector):
     # Renderizamos el pdf
     html_out = template.render(template_vars)
 
-    HTML(string=html_out).write_pdf("reportes/{}_{}_{}.pdf".format(collector, template_vars["title"], ahora))
+    HTML(string=html_out).write_pdf("reports/{}_{}_{}.pdf".format(collector, template_vars["title"], ahora))
+    logger.info("{}_{}_{}.pdf successfully generated.".format(collector, template_vars["title"], ahora))
     
 
 if __name__=="__main__":
