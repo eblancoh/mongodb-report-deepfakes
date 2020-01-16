@@ -4,6 +4,7 @@ from weasyprint import HTML
 from datetime import datetime
 from dataframe import df_builder, probs_render, histogram_render, pie_render
 from watcher import get_logger
+import argparse
 
 env = Environment(loader=FileSystemLoader('templates'))
 template = env.get_template("report.html")
@@ -63,9 +64,19 @@ def render(query, collector):
     
 
 if __name__=="__main__":
-    query = {"filename": "Taxi Driver starring Al Pacino [DeepFake].mp4"}
-    collector = "faceforensics"
 
-    render(query, collector)
+    parser = argparse.ArgumentParser(description="Report generation for DeepFake detection.")
+    parser.add_argument("--filename", type=str, help="Name of the analyzed file.")
+    parser.add_argument("--collector", type=str, help="Engine that analyzed the resource. Available values: faceforensics|facewarpingartifacts .")
+    args =parser.parse_args()
+
+    if not args.collector and not args.filename:
+        parser.print_help()
+        raise ValueError("Please, provide <filename> and <collector> to start database retrieval and report generation.")
+    # query = {"filename": "Taxi Driver starring Al Pacino [DeepFake].mp4"}
+    # collector = "faceforensics"
+
+    render(query=args.filename, collector=args.collector)
 
         
+

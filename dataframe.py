@@ -12,7 +12,7 @@ def df_builder(query, collector):
     """
     query: i.e., {"link": "https://www.youtube.com/watch?v=VWrhRBb-1Ig"}
                  {"filename": "Bill Hader channels Tom Cruise [DeepFake].mp4"}
-    collector: "faceartifacts" | "faceforensics"
+    collector: "facewarpingartifacts" | "faceforensics"
     """
     cursor = db_read(query, collector)
     content = list(cursor)[0]
