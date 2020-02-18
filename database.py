@@ -1,9 +1,5 @@
-import json
-import numpy as np
 import pymongo
-import sys
 import configparser
-import logging
 from watcher import get_logger
 
 
@@ -74,6 +70,8 @@ def db_read(query, collector):
         collection = db.facewarpingartifacts
     elif collector == "faceforensics":
         collection = db.faceforensics
+    elif collector == "headpose":
+        collection = db.headposes
 
     cursor = collection.find(query)
     logger.info("Query {} retrieved from database.".format(query))

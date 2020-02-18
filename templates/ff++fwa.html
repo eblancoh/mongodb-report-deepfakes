@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <!-- Arreglar el href para que sea relativo -->
-    <link href="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/report.css" rel="stylesheet">
+    <link href="file:///home/ideaslocascdo/deepfakes/Voight-Kampff-Wannabe/database-report/templates/ff++fwa.css" rel="stylesheet">
     <title>Reporte</title>
     <meta name="description" content="Report example">
   </head>
@@ -102,6 +102,16 @@
               Tales transformaciones dejan artefactos distintivos en los videos DeepFake resultantes.</p>
             <p>Esta herramienta, por tanto, detecta tales modificaciones comparando las áreas faciales generadas y sus regiones circundantes con 
               un modelo dedicado de Red Neural Convolucional.</p>
+            
+            <li><strong>Exposing Deep Fakes Using Inconsistent Head Poses</strong></li>
+            <p><em>Li, Yuezun and Lyu, Siwei. ICASSP 2019 - 2019 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em></p>
+            <p>En esta publiacación se propone un nuevo método para exponer imágenes o videos de caras falsas generadas por IA 
+              basado en las observaciones de que Deep Fakes se crean al empalmar la región de la cara sintetizada en la imagen original y que, al hacerlo, 
+              introduce errores que pueden revelarse cuando se estiman las poses de la cabeza en 3D a partir de las imágenes de la cara. 
+              En nuestro caso, se estima la orientación del rostro haciendo uso del modelo HopeNet y de 6 puntos internos del rostro. 
+              Posteriormente, se hace un estudio estadístico de la distancia del coseno entre ambos vectores calculados.
+            </p>
+            <p></p>
           </ul>
          
         </p>
@@ -109,7 +119,7 @@
       <h3 id="criteria-title">Criterios de asignación de legitimidad</h3>
       <section>
         <p>
-          Si bien la precisión de los algoritmos de detección soportados por nuestra herramienta está por encima del 80%, el análisis no está exento
+          Si bien la precisión de los dos primeros de algoritmos detección soportados por nuestra herramienta está por encima del 80%, el análisis no está exento
           de devolver falsos positivos o falsos negativos a la hora de determinar su legitimidad. 
         </p>
         <p>
@@ -125,6 +135,21 @@
               intervalo [30%, 40%)</strong>, catalogaremos al recurso como incierto.
             <li><strong>Recurso No Seguro [risky]</strong></li>
             Para un porcentaje de frames sobre la tasa de confianza <strong>igual o superior al 40%</strong>, se clasifica el recurso
+             como no seguro o fake. 
+          </ul>
+        </p>
+        <p>
+          En el caso de optarse por la tercera opción de análisis de legitimidad, catalogamos la naturaleza del recurso multimedia siguiendo el recurso
+          siguiendo los siguientes criterios:
+          <ul>
+            <li><strong>Recurso Seguro [safe]</strong></li>
+            Si la mediana de la distancia del coseno entre los dos vectores obtenidos es <strong>inferior a 0.02</strong>, 
+            podremos adelantar que es poco probable que el vídeo haya sido alterado.
+            <li><strong>Recurso Incierto [uncertain]</strong></li>
+            En el caso de que a mediana de la distancia del coseno entre los dos vectores obtenidos esté <strong>en el 
+              intervalo [0.02, 0.04)</strong>, catalogaremos al recurso como incierto.
+            <li><strong>Recurso No Seguro [risky]</strong></li>
+            Para una mediana de la distancia del coseno <strong>igual o superior a 0.04</strong>, se clasifica el recurso
              como no seguro o fake. 
           </ul>
         </p>
@@ -180,11 +205,11 @@
         </p>
 
           <div>
-            <img src="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/linearplot.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
+            <img src="file:///home/ideaslocascdo/deepfakes/Voight-Kampff-Wannabe/database-report/templates/linearplot.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
             <figcaption>Fig. 1 - Evolución de la probabilidad de falsedad de los frames analizados (izquierda) y <em>violin plot</em> con mediana y valores extremos (derecha)</figcaption>
           </div>
           <div>
-            <img src="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/histogram.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
+            <img src="file:///home/ideaslocascdo/deepfakes/Voight-Kampff-Wannabe/database-report/templates/histogram.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
             <figcaption>Fig. 2 - Histograma acumulado de probabilidades de no legitimidad para los frames analizados del recurso.</figcaption>
           </div>
   
@@ -234,12 +259,12 @@
           </p>
           
             <div>
-              <img src="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/linearplot.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
+              <img src="file:///home/ideaslocascdo/deepfakes/Voight-Kampff-Wannabe/database-report/templates/linearplot.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
               <figcaption>Fig. 1 - Evolución de la probabilidad de falsedad de los frames analizados (izquierda) y <em>violin plot</em> 
                 con mediana y valores extremos (derecha)</figcaption>
             </div>
             <div>
-              <img src="file:///home/ideaslocascdo/deepfakes/mongodb-report/templates/pie.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
+              <img src="file:///home/ideaslocascdo/deepfakes/Voight-Kampff-Wannabe/database-report/templates/pie.jpg" alt="" style="width: 100%; height: 100%" class="center"/>
               <figcaption>Fig. 2 - Diagrama de sectores con los porcentajes de frames analizados seguros ({{ pie_safe }}%), 
                 inciertos ({{ pie_warning }}%) y fake ({{ pie_risky }}%).</figcaption>
             </div>
